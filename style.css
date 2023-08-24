@@ -168,6 +168,7 @@ footer{
 
 .modal{
     visibility: hidden;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 100vw;
@@ -178,9 +179,8 @@ footer{
 }
 
 .modal-content{
-    margin: 8% auto 10% auto;
     width: 25vw;
-    height: 70vh;
+    height: 80vh;
     background-color: #0d0d0d;
     border-radius: 12px;
     display: flex;
@@ -191,9 +191,16 @@ footer{
 }
 
 .imagem-personagem{
-    width: 60%;
-    height: 50%;
-    border-radius: 100%;
-    background-position: 50% 0;
-    top: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-position: 50% 10%;
+    background-size: cover;
+}
+
+.detalhes-personagens{
+    font-family: 'Star Wars', sans-serif;
+    font-size: 0.8rem;
+    font-weight: lighter;
+    color: gold;
 }

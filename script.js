@@ -43,28 +43,51 @@ async function loadpersonagens(url){
             
             //informações dentro do card atravez do click 
             card.onclick = () => {
+                
+                
                 const modal = document.getElementById('modal')
                 modal.style.visibility ="visible"
 
                 const modalContent = document.getElementById('modal-content')
                 modalContent.innerHTML = '' // limpar o modal content
 
-                const imagemPersogem = document.createElement("div")
-                imagemPersogem.style.backgroundImage = 
+
+                // colocando dados em modal content
+                const imagemPersonagem = document.createElement("div")
+                imagemPersonagem.style.backgroundImage = 
                 `url('https://starwars-visualguide.com/assets/img/characters/${personagem.url.replace(/\D/g, "")}.jpg')`
-                imagemPersogem.className = "imagem-personagem"
-                modalContent.appendChild(imagemPersogem)
+                imagemPersonagem.className = "imagem-personagem"
 
                 const nome = document.createElement("span")
                 nome.className = "detalhes-personagens"
-                nome.innerText = `Nome: ${responseJson.name}`
-                modalContent.appendChild(nome)
+                nome.innerText = `Nome: ${personagem.name}`
+                
 
                 const altura = document.createElement("span")
-                altura.className = "detalhes-persagens"
-                altura.innerText = `Altura: ${responseJson.height}`
-                modalContent.appendChild(altura)
+                altura.className = "detalhes-personagens"
+                altura.innerText = `Altura: ${convertAltura(personagem.height)}m`
                 
+
+                const peso = document.createElement("span")
+                peso.className = "detalhes-personagens"
+                peso.innerText = `Peso: ${convertPeso(personagem.mass)}`
+                
+
+                const corOlhos = document.createElement("span")
+                corOlhos.className = "detalhes-personagens"
+                corOlhos.innerText = `Cor dos olhos: ${traduzCor(personagem.eye_color)}`
+                
+
+                const ano = document.createElement("span")
+                ano.className = "detalhes-personagens"
+                ano.innerText = `Nascimento: ${convertAno(personagem.birth_year)}`
+                
+                modalContent.appendChild(imagemPersonagem)
+                modalContent.appendChild(nome)
+                modalContent.appendChild(altura)
+                modalContent.appendChild(peso)
+                modalContent.appendChild(corOlhos)
+                modalContent.appendChild(ano)
             }
 
 
@@ -124,4 +147,41 @@ async function loadpaginaanterior(){
 function hideModal(){
     const modal = document.getElementById('modal')
     modal.style.visibility = "hidden"
+}
+
+function traduzCor(corOlhos){
+    const cores = {
+        blue : "azul",
+        brown : "castanho",
+        green : "verde",
+        yellow : "amarelo",
+        black : "preto",
+        pink : "rosa",
+        red : "vermelho",
+        orange : "laranja",
+        hazel : "avela",
+        unknown : "desconhecida"
+    }
+    return cores[corOlhos.toLowerCase()] || corOlhos;
+}
+
+function convertAltura(altura){
+    if(altura==="unknown"){
+        return "desconhecida"
+    }
+
+    return (altura / 100).toFixed(2);
+}
+
+function convertPeso(peso){
+    if(peso==="unknown"){
+        return "desconhecido"
+    }
+    return `${peso} Kg`
+}
+
+function convertAno(ano){
+    if(ano==="unknown"){
+        return "desconhecido"   }
+    return ano
 }
