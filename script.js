@@ -19,13 +19,13 @@ window.onload = async () => {
 async function loadpersonagens(url){
     const conteudoCentro = document.getElementById('conteudo-centro');
     conteudoCentro.innerHTML = ''; //limpar os resultados anteriores
-
+    
     try{
         const response = await fetch(url)
         const responseJson = await response.json()
-
-            //criando os cards 
-            responseJson.results.forEach((personagem) =>{
+        
+        //criando os cards 
+        responseJson.results.forEach((personagem) =>{
             const card = document.createElement("div")
             card.style.backgroundImage = 
             `url('https://starwars-visualguide.com/assets/img/characters/${personagem.url.replace(/\D/g, "")}.jpg')`
@@ -33,17 +33,41 @@ async function loadpersonagens(url){
             
             const nomeCards = document.createElement("div")
             nomeCards.className = "nome-cards"
-
+            
             const nomePersonagem = document.createElement("span")
             nomePersonagem.className = "nome-personagem"
             nomePersonagem.innerText = `${personagem.name}`
-
+            
             nomeCards.appendChild(nomePersonagem)
             card.appendChild(nomeCards)
-                //informações dentro do card atravez do click 
+            
+            //informações dentro do card atravez do click 
             card.onclick = () => {
                 const modal = document.getElementById('modal')
-                modal.style.visibility ="visible" }
+                modal.style.visibility ="visible"
+
+                const modalContent = document.getElementById('modal-content')
+                modalContent.innerHTML = '' // limpar o modal content
+
+                const imagemPersogem = document.createElement("div")
+                imagemPersogem.style.backgroundImage = 
+                `url('https://starwars-visualguide.com/assets/img/characters/${personagem.url.replace(/\D/g, "")}.jpg')`
+                imagemPersogem.className = "imagem-personagem"
+                modalContent.appendChild(imagemPersogem)
+
+                const nome = document.createElement("span")
+                nome.className = "detalhes-personagens"
+                nome.innerText = `Nome: ${responseJson.name}`
+                modalContent.appendChild(nome)
+
+                const altura = document.createElement("span")
+                altura.className = "detalhes-persagens"
+                altura.innerText = `Altura: ${responseJson.height}`
+                modalContent.appendChild(altura)
+                
+            }
+
+
     
 
             conteudoCentro.appendChild(card) 

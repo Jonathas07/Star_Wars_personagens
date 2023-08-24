@@ -168,7 +168,6 @@ footer{
 
 .modal{
     visibility: hidden;
-    display: flex;
     align-items: center;
     justify-content: center;
     width: 100vw;
@@ -179,6 +178,7 @@ footer{
 }
 
 .modal-content{
+    margin: 8% auto 10% auto;
     width: 25vw;
     height: 70vh;
     background-color: #0d0d0d;
@@ -188,4 +188,12 @@ footer{
     row-gap: 15px;
     padding: 30px 10px;
     align-items: center;
+}
+
+.imagem-personagem{
+    width: 60%;
+    height: 50%;
+    border-radius: 100%;
+    background-position: 50% 0;
+    top: 0;
 }
