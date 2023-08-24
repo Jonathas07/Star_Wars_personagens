@@ -40,13 +40,13 @@ async function loadpersonagens(url){
 
             nomeCards.appendChild(nomePersonagem)
             card.appendChild(nomeCards)
-            conteudoCentro.appendChild(card) 
-            
-            //informações dentro do card atravez do click 
+                //informações dentro do card atravez do click 
             card.onclick = () => {
                 const modal = document.getElementById('modal')
-                modal.style.visibility ="visible"
-            }
+                modal.style.visibility ="visible" }
+    
+
+            conteudoCentro.appendChild(card) 
         });
 
         const nextbutton = document.getElementById("next-button")
